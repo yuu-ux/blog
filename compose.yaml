@@ -1,0 +1,39 @@
+services:
+    web:
+        build:
+            context: .
+            dockerfile: ./docker/web/Dockerfile
+        ports:
+            - 8001:8001
+        depends_on:
+            - app
+        init: true
+        environment:
+            TZ: Asia/Tokyo
+        networks:
+            - app_network
+
+    app:
+        build:
+            context: .
+            dockerfile: ./docker/app/Dockerfile
+        volumes:
+            - ./app:/root/app
+        init: true
+        tty: true
+        environment:
+            TZ: Asia/Tokyo
+        networks:
+            - app_network
+
+    db:
+        image: mysql:8.3.0
+        ports:
+            - 13306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: tomos
+            TZ: Asia/Tokyo
+
+networks:
+    app_network:
