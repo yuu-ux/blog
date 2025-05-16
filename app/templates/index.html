@@ -1,10 +1,35 @@
 {% extends 'includes/layout.html' %}
 
 {% block body %}
-{% for d in data %}
-  <li>
-    <strong>{{ d.title }}</strong><br>
-    <small>{{ d.content | safe }}</small>
-  </li>
-{% endfor %}
+<section id="profile">
+  <div class="profile-container">
+    <div class="profile-card">
+      <div class="profile-image">
+        <img src="/static/images/profile.png">
+      </div>
+
+      <div class="profile-icons">
+        <a href="https://github.com/yuu-ux/" target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://x.com/mazikado_jp" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </div>
+    </div>
+    <div class="profile-bio">
+      <h2>Biography</h2>
+      <p>
+        Software Engineer at Example Inc. Mainly focusing on mobile app area.
+        Good at creating quick mockups and solving problems in large codebases.
+      </p>
+      <h3>Interests</h3>
+      <ul>
+        <li>Flask</li>
+        <li>Docker</li>
+        <li>Git</li>
+      </ul>
+    </div>
+  </div>
+</section>
 {% endblock %}
