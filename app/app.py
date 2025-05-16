@@ -3,7 +3,6 @@ from controllers.root_controller import root_bp
 from controllers.school_controller import school_bp
 from controllers.web_controller import web_bp
 from settings.asset import ScssBundler
-import os
 
 app = Flask(__name__)
 
