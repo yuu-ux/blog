@@ -1,6 +1,10 @@
-{% extends 'include/layout.html' %}
+{% extends 'includes/layout.html' %}
 
 {% block body %}
-<h1>head</h1>
-<p>body</p>
+{% for d in data %}
+  <li>
+    <strong>{{ d.title }}</strong><br>
+    <small>{{ d.content | safe }}</small>
+  </li>
+{% endfor %}
 {% endblock %}
