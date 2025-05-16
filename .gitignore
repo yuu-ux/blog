@@ -8,6 +8,7 @@ wheels/
 dist.css
 .env
 pyrightconfig.json
+.webassets-cache
 
 # venv
 .venv
