@@ -4,10 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <title>yehara</title>
+    {% block head %}
+    {% endblock %}
   </head>
   <body>
+    {% include 'includes/header.html' %}
     {% block body %}
     {% endblock %}
   </body>
+  <script src="./static/js/app.js"></script>
 </html>
-
