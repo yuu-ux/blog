@@ -1,0 +1,13 @@
+.header {
+    display: flex;
+    background-color: #009EF3;
+    justify-content: space-between;
+    ul {
+        display: inline-flex;
+        list-style: none;
+        margin: 0;
+        a {
+            padding: 10px;
+        }
+    }
+}
