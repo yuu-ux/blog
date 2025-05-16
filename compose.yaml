@@ -32,7 +32,7 @@ services:
             - 13306:3306
         environment:
             MYSQL_ROOT_PASSWORD: password
-            MYSQL_DATABASE: tomos
+            MYSQL_DATABASE: blog
             TZ: Asia/Tokyo
 
 networks:
