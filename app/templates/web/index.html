@@ -1,5 +1,19 @@
 {% extends 'includes/layout.html' %}
+
 {% block body %}
-<h1>Web</h1>
-<p>テストテストテストテスト</p>
+<section id="web-articles">
+  <div class="container">
+    <h1 class="page-title">Web</h1>
+    <div class="article-list">
+      {% for article in articles %}
+      <div class="article-card">
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.summary }}</p>
+        {#<a href="{{ url_for('web_bp.article', article_id=article.id) }}">Read more</a>#}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 {% endblock %}
+
