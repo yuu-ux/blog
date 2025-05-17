@@ -11,6 +11,10 @@ dependencies = [
     "flask-admin>=1.6.1",
     "flask-login>=0.6.3",
     "flask-sqlalchemy>=3.1.1",
+    "wtforms>=3.2.1",
+    "flask-wtf>=1.2.2",
+    "sqlalchemy>=2.0.41",
+    "mysqlclient>=2.2.7",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
