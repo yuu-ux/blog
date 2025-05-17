@@ -11,7 +11,7 @@ RUN curl -sSf https://rye.astral.sh/get | bash \
 
 # Python ライブラリのためのインストール
 RUN apt update \
- && apt install -y python3-dev default-libmysqlclient-dev build-essential pkg-config clang
+ && apt install -y python3-dev default-libmysqlclient-dev build-essential pkg-config
 
 COPY ./docker/app/.bashrc /root/
 WORKDIR /root/app
