@@ -1,1 +1,6 @@
-<h1>Hello World</h1>
+{% extends 'includes/layout.html' %}
+{% from 'includes/macros.html' import show_flash_messages %}
+
+{% block body %}
+{{ show_flash_messages() }}
+{% endblock %}

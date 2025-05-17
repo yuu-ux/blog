@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, redirect, flash
+from flask import Blueprint, render_template, url_for, redirect, flash, session
 from forms.login import LoginForm
 from db.database import db
 from models.member import Member
@@ -28,4 +28,8 @@ def index():
             form.password.data = '' # type: ignore
     return render_template('login.html', form=form)
 
-
+@login_bp.route('/logout', methods=['GET'])
+def logout():
+    session.clear()
+    flash('ログアウトしました', 'info')
+    return redirect(url_for('root_bp.index'))

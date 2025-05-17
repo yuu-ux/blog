@@ -16,6 +16,10 @@ class Member(AuditableColumns, db.Model):
         session['member_id'] = member.id
 
     @staticmethod
+    def fetch_active_member(member_id):
+        return db.session.query(Member).filter_by(id = member_id).first()
+
+    @staticmethod
     def check_password(input_password, target_hashed_password):
         input_sha256_hashed_password = hashlib.sha256(input_password.encode('utf-8')).hexdigest()
         return bcrypt.checkpw(input_sha256_hashed_password.encode('utf-8'), target_hashed_password.encode('utf-8'))
