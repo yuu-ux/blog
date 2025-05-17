@@ -20,7 +20,7 @@ def index():
                 return redirect(url_for('login_bp.index'))
             else:
                 Member.login(member)
-                flash(f'{name}でログインしました')
+                flash(f'{name}でログインしました', 'info')
                 return redirect(url_for('root_bp.index'))
         except SQLAlchemyError:
             logging.exception('login error')
