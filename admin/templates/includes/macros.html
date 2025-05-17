@@ -1,0 +1,27 @@
+{% macro show_flash_messages() %}
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="absolute top-4 left-1/2 transform -translate-x-1/2 w-full max-w-2xl space-y-2">
+        {% for category, message in messages %}
+          {% if category == 'error' %}
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded shadow-md text-center">
+              {{ message }}
+            </div>
+          {% elif category == 'success' %}
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-md text-center">
+              {{ message }}
+            </div>
+          {% elif category == 'info' %}
+            <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded shadow-md text-center">
+              {{ message }}
+            </div>
+          {% else %}
+            <div class="bg-gray-100 border border-gray-400 text-gray-700 px-4 py-3 rounded shadow-md text-center">
+              {{ message }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+{% endmacro %}
