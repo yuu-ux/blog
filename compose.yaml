@@ -28,6 +28,7 @@ services:
             dockerfile: ./docker/admin/Dockerfile
         volumes:
             - ./admin:/root/admin
+            - ./seedr:/root/admin/seeder
         tty: true
         environment:
             TZ: Asia/Tokyo
