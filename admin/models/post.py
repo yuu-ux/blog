@@ -12,5 +12,6 @@ class Post(AuditableColumns, db.Model):
     body: Mapped[str] = mapped_column(db.Text, nullable=True)
     published_at: Mapped[datetime] = mapped_column(db.DateTime(), nullable=True)
     is_draft: Mapped[bool] = mapped_column(db.Boolean, nullable=False, default=False)
+    is_deleted: Mapped[bool] = mapped_column(db.Boolean, nullable=False, default=False)
     category_id: Mapped[int] = mapped_column(db.ForeignKey('category.id'), nullable=False)
     category: Mapped['Category'] = relationship('Category', backref='posts')

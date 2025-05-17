@@ -3,4 +3,34 @@
 
 {% block body %}
 {{ show_flash_messages() }}
+
+<div class="max-w-2xl mx-auto my-10 p-5 bg-white rounded-lg shadow-md">
+  <div class="flex justify-between items-center mb-5">
+    <h2 class="text-xl font-semibold">コンテンツ一覧</h2>
+    <p class="bg-blue-500 hover:bg-blue-600 text-white text-sm py-2 px-4 rounded cursor-pointer">
+      投稿
+    </p>
+    {# <a href="{{ url_for('create_post') }}" class="bg-blue-500 hover:bg-blue-600 text-white text-sm py-2 px-4 rounded">投稿</a> #}
+  </div>
+
+  <ul class="list-none p-0 divide-y divide-gray-300">
+    {% for post in posts %}
+    <li class="flex justify-between items-center py-4">
+      <span class="text-gray-800">{{ post.title }}</span>
+      <div class="flex gap-2">
+        <p class="bg-gray-500 hover:bg-gray-600 text-white text-sm py-1 px-3 rounded cursor-pointer">
+          編集
+        </p>
+        {# <a href="{{ url_for('edit_post', post_id=post.id) }}" class="bg-gray-500 hover:bg-gray-600 text-white text-sm py-1 px-3 rounded">編集</a> #}
+
+        <form method="POST" action="{{ url_for('root_bp.delete', post_id=post.id) }}">
+          <button type="submit" class="bg-red-500 hover:bg-red-600 text-white text-sm py-1 px-3 rounded">
+            削除
+          </button>
+        </form>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 {% endblock %}
