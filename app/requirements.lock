@@ -12,8 +12,6 @@
 -e file:.
 blinker==1.9.0
     # via flask
-cached-property==2.0.1
-    # via sqlalchemy-orm
 certifi==2025.1.31
     # via requests
 charset-normalizer==3.4.1
@@ -23,16 +21,17 @@ click==8.1.8
 flask==3.1.0
     # via app
     # via flask-assets
+    # via flask-sqlalchemy
 flask-assets==2.1.0
     # via app
-greenlet==3.1.1
+flask-sqlalchemy==3.1.1
+    # via app
+greenlet==3.2.2
     # via sqlalchemy
 gunicorn==23.0.0
     # via app
 idna==3.10
     # via requests
-inflection==0.5.1
-    # via sqlalchemy-orm
 itsdangerous==2.2.0
     # via flask
 jinja2==3.1.5
@@ -42,8 +41,6 @@ libsass==0.23.0
 markupsafe==3.0.2
     # via jinja2
     # via werkzeug
-mypy-extensions==1.0.0
-    # via typing-inspect
 mysql-connector-python==9.2.0
     # via app
 packaging==24.2
@@ -52,16 +49,10 @@ python-dotenv==1.0.1
     # via app
 requests==2.32.3
     # via app
-sqlalchemy==2.0.38
-    # via app
-    # via sqlalchemy-orm
-sqlalchemy-orm==1.2.10
-    # via app
-typing-extensions==4.12.2
+sqlalchemy==2.0.41
+    # via flask-sqlalchemy
+typing-extensions==4.13.2
     # via sqlalchemy
-    # via typing-inspect
-typing-inspect==0.9.0
-    # via sqlalchemy-orm
 urllib3==2.3.0
     # via requests
 watchdog==6.0.0
