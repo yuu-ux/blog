@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>yehara</title>
+    {% block head %}
+    <link rel="stylesheet" href="/static/css/dist.css" />
+    {% endblock %}
+  </head>
+  <body class="h-screen overflow-hidden">
+    {% include 'includes/header.html' %}
+    {% block body %}
+    {% endblock %}
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://kit.fontawesome.com/41f8c4d20c.js" crossorigin="anonymous"></script>
+</html>
