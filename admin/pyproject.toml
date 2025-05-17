@@ -15,6 +15,7 @@ dependencies = [
     "flask-wtf>=1.2.2",
     "sqlalchemy>=2.0.41",
     "mysqlclient>=2.2.7",
+    "bcrypt>=4.3.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
