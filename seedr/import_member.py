@@ -14,9 +14,9 @@ with app.app_context():
 
     if not db.session.get(Member, 1):
         member = Member(
-            id=1,
-            name="yehara",
-            password="hogehoge",
+            id=1, # type: ignore
+            name="yehara", # type: ignore
+            password="hogehoge", # type: ignore
         )
         db.session.add(member)
         db.session.commit()
