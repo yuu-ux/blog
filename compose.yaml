@@ -5,13 +5,12 @@ services:
             dockerfile: ./docker/web/Dockerfile
         ports:
             - 8001:8001
+            - 8002:8002
         depends_on:
             - app
         init: true
         environment:
             TZ: Asia/Tokyo
-        networks:
-            - app_network
 
     app:
         build:
@@ -19,12 +18,19 @@ services:
             dockerfile: ./docker/app/Dockerfile
         volumes:
             - ./app:/root/app
-        init: true
         tty: true
         environment:
             TZ: Asia/Tokyo
-        networks:
-            - app_network
+
+    admin:
+        build:
+            context: .
+            dockerfile: ./docker/admin/Dockerfile
+        volumes:
+            - ./admin:/root/admin
+        tty: true
+        environment:
+            TZ: Asia/Tokyo
 
     db:
         image: mysql:8.3.0
@@ -34,6 +40,3 @@ services:
             MYSQL_ROOT_PASSWORD: password
             MYSQL_DATABASE: blog
             TZ: Asia/Tokyo
-
-networks:
-    app_network:
