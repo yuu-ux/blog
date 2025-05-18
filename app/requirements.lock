@@ -41,7 +41,7 @@ libsass==0.23.0
 markupsafe==3.0.2
     # via jinja2
     # via werkzeug
-mysql-connector-python==9.2.0
+mysqlclient==2.2.7
     # via app
 packaging==24.2
     # via gunicorn
@@ -50,6 +50,7 @@ python-dotenv==1.0.1
 requests==2.32.3
     # via app
 sqlalchemy==2.0.41
+    # via app
     # via flask-sqlalchemy
 typing-extensions==4.13.2
     # via sqlalchemy

@@ -27,7 +27,7 @@ RUN /root/.rye/shims/rye config --set behavior.toolchain="cpython@$PYTHON_VERSIO
 COPY ./app/README.md ./app/pyproject.toml ./app/requirements*.lock /root/app
 RUN mkdir -p /root/app/config
 COPY ./app/config/gunicorn.conf.py /root/app/config
-RUN /root/.rye/shims/rye sync --verbose --no-lock && mv .venv /root/
+RUN /root/.rye/shims/rye sync --no-lock --verbose && mv .venv /root/
 
 COPY --chmod=0755 <<-'EOF' /root/startup.sh
 #!/bin/bash
@@ -51,6 +51,7 @@ RUN --mount=type=cache,target=/var/lib/apt/lists \
   && apt install -y \
   ca-certificates \
   inotify-tools \
-  procps
+  procps \
+  libmariadb3
 
 CMD /root/startup.sh /root/.rye/shims/rye run gunicorn --bind 0.0.0.0:9000 app:app --reload --log-level debug --pid /run/gunicorn.pid
