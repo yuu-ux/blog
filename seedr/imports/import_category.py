@@ -17,7 +17,7 @@ with app.app_context():
     if not db.session.get(Category, 1):
         category = [
             Category(id = 1, name = 'web'), #type: ignore
-            Category(id = 2, name = 'school'), #type: ignore
+            Category(id = 2, name = '42Tokyo'), #type: ignore
         ]
         db.session.add_all(category)
         db.session.commit()
