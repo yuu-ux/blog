@@ -16,9 +16,9 @@
   <ul class="list-none p-0 divide-y divide-gray-300">
     {% for post in posts %}
     <li class="flex justify-between items-center py-4">
-      <span class="text-gray-800"><a href="{{ url_for('root_bp.detail', post_id=post.id) }}" class="text-blue-600 hover:font-bold">{{ post.title }}</a></span>
+      <span class="text-gray-800"><a href="{{ url_for('post_bp.index', post_id=post.id) }}" class="text-blue-600 hover:font-bold">{{ post.title }}</a></span>
       <div class="flex gap-2">
-        <form method="POST" action="{{ url_for('root_bp.delete', post_id=post.id) }}">
+        {#<form method="POST" action="{{ url_for('post_bp.delete', post_id=post.id) }}">#}
           <button type="submit" class="bg-red-500 hover:bg-red-600 text-white text-sm py-1 px-3 rounded">
             削除
           </button>

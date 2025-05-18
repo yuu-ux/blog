@@ -1,6 +1,7 @@
 from flask import Flask, g, session
 from controllers.root_controller import root_bp
 from controllers.login_controller import login_bp
+from controllers.post_controller import post_bp
 from db.database import init_db
 from models.member import Member
 
@@ -17,6 +18,7 @@ url_prefix = '/'
 
 app.register_blueprint(root_bp, url_prefix=url_prefix)
 app.register_blueprint(login_bp, url_prefix=url_prefix + 'login')
+app.register_blueprint(post_bp, url_prefix=url_prefix + 'post')
 
 app.before_request(before_request)
 if __name__ == '__main__':
