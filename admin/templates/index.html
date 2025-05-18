@@ -7,10 +7,7 @@
 <div class="max-w-2xl mx-auto my-10 p-5 bg-white rounded-lg shadow-md">
   <div class="flex justify-between items-center mb-5">
     <h2 class="text-xl font-semibold">コンテンツ一覧</h2>
-    <p class="bg-blue-500 hover:bg-blue-600 text-white text-sm py-2 px-4 rounded cursor-pointer">
-      投稿
-    </p>
-    {# <a href="{{ url_for('create_post') }}" class="bg-blue-500 hover:bg-blue-600 text-white text-sm py-2 px-4 rounded">投稿</a> #}
+    <a href="{{ url_for('post_bp.create') }}" class="bg-blue-500 hover:bg-blue-600 text-white text-sm py-2 px-4 rounded">投稿</a>
   </div>
 
   <ul class="list-none p-0 divide-y divide-gray-300">

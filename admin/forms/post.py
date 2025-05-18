@@ -6,9 +6,9 @@ class PostForm(FlaskForm):
     title = StringField('タイトル', validators=[DataRequired()])
     body = TextAreaField('本文')
     category = SelectField('カテゴリ', choices=[
-        ('web', 'web'),
-        ('school', '42Tokyo'),
-    ])
+        (1, 'web'),
+        (2, '42Tokyo'),
+    ], coerce=int)
     submit = SubmitField()
 
     def __init__(self, *args, **kwargs):

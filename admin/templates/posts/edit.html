@@ -2,14 +2,29 @@
 
 {% block body %}
 <div class="bg-white p-6 rounded shadow">
-  <form action="{{ url_for('post_bp.edit', post_id=post.id) }}", method="POST">
+  <form
+    {% if post %}
+    action="{{ url_for('post_bp.edit', post_id=post.id) }}",
+    {% else %}
+    action="{{ url_for('post_bp.create') }}",
+    {% endif %}
+    method="POST"
+  >
   {{ form.hidden_tag() }}
-  {{ form.title(class="w-full mb-3 border p-2 rounded", value=post.title, placeholder="タイトルを入力してください") }}
+  {{ form.title(class="w-full mb-3 border p-2 rounded", placeholder="タイトルを入力してください") }}
   {{ form.category(class="w-full mb-3 border p-2 rounded") }}
-  {{ form.body(id="edit-body", class="w-full h-60 border p-2 rounded") }}
+  {{ form.body(id="edit-body", class="w-full h-60 border p-2 rounded", placeholder="ここに本文を入力してください") }}
   <div class="flex gap-2 mt-4">
     {{ form.submit(class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600") }}
-    <a href="{{ url_for('post_bp.index', post_id=post.id) }}" class="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400">戻る</a>
+    <a
+     {% if post %}
+      href="{{ url_for('post_bp.index', post_id=post.id) }}"
+      {% else %}
+      href="{{ url_for('root_bp.index') }}"
+      {% endif %}
+      class="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400">
+      戻る
+    </a>
   </div>
   </form>
 </div>
