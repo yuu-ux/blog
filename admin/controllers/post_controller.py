@@ -31,6 +31,7 @@ def edit(post_id):
         return redirect('root_bp.index')
 
     form = PostForm()
+    form.submit.label.text = '更新' # type: ignore
     if request.method == 'GET':
         form.title.data = post.title # type: ignore
         form.body.data = post.body # type: ignore
@@ -41,7 +42,7 @@ def edit(post_id):
             post.body = form.body.data # type: ignore
             db.session.commit()
         except SQLAlchemyError:
-            logging.error('error post edit')
+            logging.exception('error post edit')
             flash('記事の更新に失敗しました', 'error')
             return redirect(url_for('post_bp.index', post_id=post.id))
         flash('記事を更新しました', 'info')
@@ -50,15 +51,24 @@ def edit(post_id):
     return render_template('posts/edit.html', member=g.member, post=post, form=form)
 #
 #
-# @post_bp.route('/delete/<int:post_id>', methods=['POST'])
-# def delete(post_id):
-#     if not g.member:
-#         return redirect(url_for('login_bp.index'))
-#     post = db.session.get(Post, post_id)
-#     if post is None:
-#         flash('記事の削除に失敗しました', 'error')
-#         return redirect(url_for('post_bp.index'))
-#     post.is_deleted = True
-#     db.session.commit()
-#     flash('記事を削除しました', 'info')
-#     return redirect(url_for('post_bp.index'))
+@post_bp.route('/<int:post_id>/delete', methods=['POST'])
+def delete(post_id):
+    if not g.member:
+        return redirect(url_for('login_bp.index'))
+
+    post = db.session.query(Post).filter(Post.id == post_id, Post.is_deleted != True).first()
+    if post is None:
+        flash('存在しない記事です', 'error')
+        logging.error('error post delete')
+        return redirect(url_for('root_bp.index'))
+
+    try:
+        post.is_deleted = True # type: ignore
+        db.session.commit()
+    except SQLAlchemyError:
+        logging.exception('error post delete')
+        flash('記事が削除できませんでした')
+        return redirect(url_for('root_bp.index'))
+
+    flash('記事を削除しました', 'info')
+    return redirect(url_for('root_bp.index'))

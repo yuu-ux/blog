@@ -9,7 +9,7 @@ class PostForm(FlaskForm):
         ('web', 'web'),
         ('school', '42Tokyo'),
     ])
-    submit = SubmitField('更新')
+    submit = SubmitField()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
