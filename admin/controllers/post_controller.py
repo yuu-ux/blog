@@ -1,6 +1,6 @@
 from datetime import datetime
 from flask import Blueprint, redirect, url_for, render_template, request, g, flash
-from db.database import db
+from common.db.database import db
 from common.models.post import Post
 from forms.post import PostForm
 from sqlalchemy.exc import SQLAlchemyError

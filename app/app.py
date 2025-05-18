@@ -1,9 +1,14 @@
 from flask import Flask
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 from controllers.root_controller import root_bp
 from controllers.school_controller import school_bp
 from controllers.web_controller import web_bp
 from settings.asset import ScssBundler
-from db.database import init_db
+from common.db.database import init_db
 
 app = Flask(__name__)
 

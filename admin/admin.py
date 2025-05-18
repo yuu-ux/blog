@@ -8,7 +8,7 @@ print("★ sys.path:", sys.path)
 from controllers.root_controller import root_bp
 from controllers.login_controller import login_bp
 from controllers.post_controller import post_bp
-from db.database import init_db
+from common.db.database import init_db
 from common.models.member import Member
 
 app = Flask(__name__)

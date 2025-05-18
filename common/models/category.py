@@ -1,4 +1,4 @@
-from db.database import AuditableColumns, db
+from common.db.database import AuditableColumns, db
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.dialects.mysql import INTEGER
 

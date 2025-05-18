@@ -1,5 +1,5 @@
 from flask import render_template, Blueprint, g, redirect, url_for, flash
-from db.database import db
+from common.db.database import db
 from common.models.post import Post
 from forms.post import PostForm
 
