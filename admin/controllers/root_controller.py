@@ -1,6 +1,6 @@
 from flask import render_template, Blueprint, g, redirect, url_for, flash
 from db.database import db
-from models.post import Post
+from common.models.post import Post
 from forms.post import PostForm
 
 root_bp = Blueprint('root_bp', __name__)

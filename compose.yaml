@@ -18,6 +18,7 @@ services:
             dockerfile: ./docker/app/Dockerfile
         volumes:
             - ./app:/root/app
+            - ./common:/root/common
         tty: true
         environment:
             TZ: Asia/Tokyo
@@ -29,6 +30,7 @@ services:
         volumes:
             - ./admin:/root/admin
             - ./seedr:/root/admin/seeder
+            - ./common:/root/common
         tty: true
         environment:
             TZ: Asia/Tokyo

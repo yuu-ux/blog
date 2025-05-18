@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, url_for, redirect, flash, session
 from forms.login import LoginForm
 from db.database import db
-from models.member import Member
+from common.models.member import Member
 from sqlalchemy.exc import SQLAlchemyError
 import logging
 

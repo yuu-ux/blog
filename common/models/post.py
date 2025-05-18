@@ -2,7 +2,7 @@ from datetime import datetime
 from db.database import AuditableColumns, db
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.dialects.mysql import INTEGER
-from models.category import Category
+from common.models.category import Category
 
 class Post(AuditableColumns, db.Model):
     __tablename__ = 'post'
