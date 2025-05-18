@@ -3,7 +3,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-print("★ sys.path:", sys.path)
+print('★ sys.path:', sys.path)
 
 from controllers.root_controller import root_bp
 from controllers.login_controller import login_bp
@@ -17,8 +17,10 @@ app.secret_key = 'secret'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password@db:3306/blog'
 init_db(app)
 
+
 def before_request():
     g.member = Member.fetch_active_member(session.get('member_id', None))
+
 
 url_prefix = '/'
 

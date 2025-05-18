@@ -9,16 +9,22 @@ import logging
 
 post_bp = Blueprint('post_bp', __name__)
 
+
 @post_bp.route('/<int:post_id>', methods=['GET'])
 def index(post_id):
     if not g.member:
         return redirect(url_for('login_bp.index'))
 
-    post = db.session.query(Post).filter(Post.id == post_id, Post.is_deleted != True).first()
+    post = (
+        db.session.query(Post)
+        .filter(Post.id == post_id, Post.is_deleted != True)
+        .first()
+    )
     if post is None:
         flash('記事を取得できませんでした', 'error')
         return redirect('root_bp.index')
     return render_template('posts/index.html', member=g.member, post=post)
+
 
 @post_bp.route('/create', methods=['GET', 'POST'])
 def create():
@@ -26,11 +32,16 @@ def create():
         return redirect(url_for('login_bp.index'))
 
     form = PostForm()
-    form.submit.label.text = '作成' # type: ignore
+    form.submit.label.text = '作成'  # type: ignore
 
     if form.validate_on_submit():
         try:
-            post = Post(title=form.title.data, body=form.body.data, published_at=datetime.now(), category_id=form.category.data) # type: ignore
+            post = Post(
+                title=form.title.data,
+                body=form.body.data,
+                published_at=datetime.now(),
+                category_id=form.category.data,
+            )  # type: ignore
             db.session.add(post)
             db.session.commit()
         except SQLAlchemyError:
@@ -42,28 +53,33 @@ def create():
         return redirect(url_for('root_bp.index'))
     return render_template('posts/edit.html', member=g.member, form=form)
 
+
 @post_bp.route('/<int:post_id>/edit', methods=['GET', 'POST'])
 def edit(post_id):
     if not g.member:
         return redirect(url_for('login_bp.index'))
 
-    post = db.session.query(Post).filter(Post.id == post_id, Post.is_deleted != True).first()
+    post = (
+        db.session.query(Post)
+        .filter(Post.id == post_id, Post.is_deleted != True)
+        .first()
+    )
     if post is None:
         flash('記事を取得できませんでした', 'error')
         logging.error('error get post')
         return redirect('root_bp.index')
 
     form = PostForm()
-    form.submit.label.text = '更新' # type: ignore
+    form.submit.label.text = '更新'  # type: ignore
     if request.method == 'GET':
-        form.title.data = post.title # type: ignore
-        form.body.data = post.body # type: ignore
+        form.title.data = post.title  # type: ignore
+        form.body.data = post.body  # type: ignore
 
     if form.validate_on_submit():
         try:
-            post.title = form.title.data # type: ignore
-            post.body = form.body.data # type: ignore
-            post.category_id = form.category.data # type: ignore
+            post.title = form.title.data  # type: ignore
+            post.body = form.body.data  # type: ignore
+            post.category_id = form.category.data  # type: ignore
             db.session.commit()
         except SQLAlchemyError:
             logging.exception('error post edit')
@@ -74,19 +90,24 @@ def edit(post_id):
 
     return render_template('posts/edit.html', member=g.member, post=post, form=form)
 
+
 @post_bp.route('/<int:post_id>/delete', methods=['POST'])
 def delete(post_id):
     if not g.member:
         return redirect(url_for('login_bp.index'))
 
-    post = db.session.query(Post).filter(Post.id == post_id, Post.is_deleted != True).first()
+    post = (
+        db.session.query(Post)
+        .filter(Post.id == post_id, Post.is_deleted != True)
+        .first()
+    )
     if post is None:
         flash('存在しない記事です', 'error')
         logging.error('error post delete')
         return redirect(url_for('root_bp.index'))
 
     try:
-        post.is_deleted = True # type: ignore
+        post.is_deleted = True  # type: ignore
         db.session.commit()
     except SQLAlchemyError:
         logging.exception('error post delete')
