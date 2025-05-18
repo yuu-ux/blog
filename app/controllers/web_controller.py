@@ -4,6 +4,7 @@ from common.models.post import Post
 
 web_bp = Blueprint('web_bp', __name__)
 
+
 @web_bp.route('/', methods=['GET'])
 def index():
     posts = db.session.query(Post).filter(Post.category_id == 1).all()

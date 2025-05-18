@@ -2,10 +2,16 @@ from flask_assets import Environment, Bundle
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
+
 class ScssBundler:
     def __init__(self, app):
         assets = Environment(app)
-        self.scss = Bundle('../scss/main.scss', filters='libsass', output='css/dist.css', depends='../scss/**/*.scss')
+        self.scss = Bundle(
+            '../scss/main.scss',
+            filters='libsass',
+            output='css/dist.css',
+            depends='../scss/**/*.scss',
+        )
         assets.register('scss_all', self.scss)
 
     def build(self):
@@ -16,6 +22,7 @@ class ScssBundler:
         observer = Observer()
         observer.schedule(event_handler, path='./scss', recursive=True)
         observer.start()
+
 
 class ScssWatchdogHandler(FileSystemEventHandler):
     def __init__(self, build_event, *args, **kwargs):

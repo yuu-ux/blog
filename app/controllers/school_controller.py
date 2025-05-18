@@ -4,6 +4,7 @@ from common.models.post import Post
 
 school_bp = Blueprint('school_bp', __name__)
 
+
 @school_bp.route('/', methods=['GET'])
 def index():
     posts = db.session.query(Post).filter(Post.category_id == 2).all()
