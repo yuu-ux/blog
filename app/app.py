@@ -8,6 +8,7 @@ from controllers.root_controller import root_bp
 from controllers.school_controller import school_bp
 from controllers.web_controller import web_bp
 from settings.asset import ScssBundler
+from settings.filter import setup_filter
 from common.db.database import init_db
 
 app = Flask(__name__)
@@ -15,6 +16,7 @@ app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password@db:3306/blog'
 init_db(app)
+setup_filter(app)
 
 # SCSS ビルド
 scss_bundler = ScssBundler(app)
