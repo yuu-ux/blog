@@ -35,6 +35,14 @@ services:
         environment:
             TZ: Asia/Tokyo
 
+    tailwind:
+        build:
+            context: .
+            dockerfile: ./docker/tailwind/Dockerfile
+        volumes:
+            - ./admin:/root/admin
+        tty: true
+        command: npx tailwindcss -i /root/admin/static/style.css -o /root/admin/static/dist.css --watch
     db:
         image: mysql:8.3.0
         ports:
