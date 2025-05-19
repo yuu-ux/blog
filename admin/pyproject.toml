@@ -16,6 +16,8 @@ dependencies = [
     "sqlalchemy>=2.0.41",
     "mysqlclient>=2.2.7",
     "bcrypt>=4.3.0",
+    "markdown>=3.8",
+    "markupsafe>=3.0.2",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"

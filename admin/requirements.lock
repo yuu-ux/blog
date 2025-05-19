@@ -39,7 +39,10 @@ itsdangerous==2.2.0
     # via flask-wtf
 jinja2==3.1.6
     # via flask
+markdown==3.8
+    # via admin
 markupsafe==3.0.2
+    # via admin
     # via flask
     # via jinja2
     # via werkzeug
