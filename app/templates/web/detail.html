@@ -1,0 +1,15 @@
+{% extends 'includes/layout.html' %}
+
+{% block body %}
+<div class="post-detail">
+  <h1 class="post-title">{{ post.title }}</h1>
+  <p class="post-meta">
+    投稿日: {{ post.created_on }}
+  </p>
+
+  <div class="post-body">
+    {{ post.body|markdown }}
+  </div>
+</div>
+{% endblock %}
+

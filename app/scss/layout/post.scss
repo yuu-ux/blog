@@ -1,0 +1,42 @@
+.post-detail {
+  max-width: 800px;
+  margin: 2rem auto;
+  background-color: #1e1e1e;
+  padding: 2rem;
+  border-radius: 8px;
+  color: #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.post-title {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #444;
+  padding-bottom: 0.5rem;
+}
+
+.post-meta {
+  font-size: 0.9rem;
+  color: #aaaaaa;
+  margin-bottom: 1.5rem;
+}
+
+.post-body {
+  font-size: 1.1rem;
+  color: #dddddd;
+
+  p {
+    margin-bottom: 1em;
+  }
+
+  a {
+    color: #90caf9;
+    text-decoration: underline;
+
+    &:hover {
+      color: #64b5f6;
+    }
+  }
+}
+
