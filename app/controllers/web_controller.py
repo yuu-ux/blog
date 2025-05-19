@@ -26,4 +26,4 @@ def detail(post_id):
     if post is None:
         flash('記事が見つかりませんでした', 'error')
         return redirect(url_for('web_bp.index'))
-    return render_template('web/detail.html', post=post)
+    return render_template('includes/post.html', post=post)
