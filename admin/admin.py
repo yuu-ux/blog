@@ -10,12 +10,14 @@ from controllers.login_controller import login_bp
 from controllers.post_controller import post_bp
 from common.db.database import init_db
 from common.models.member import Member
+from common.filter import setup_filter
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.secret_key = 'secret'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password@db:3306/blog'
 init_db(app)
+setup_filter(app)
 
 
 def before_request():
