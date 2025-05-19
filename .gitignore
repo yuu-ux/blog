@@ -9,6 +9,7 @@ dist.css
 .env
 pyrightconfig.json
 .webassets-cache
+node_modules
 
 # venv
 .venv
