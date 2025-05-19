@@ -16,6 +16,7 @@ dependencies = [
     "sqlalchemy>=2.0.41",
     "requests>=2.32.3",
     "libsass>=0.23.0",
+    "markdown>=3.8",
 ]
 readme = "README.md"
 requires-python = ">= 3.12"
