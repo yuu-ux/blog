@@ -11,8 +11,8 @@
     </div>
     <a href="{{ url_for('post_bp.edit', post_id=post.id) }}" class="text-sm bg-gray-500 text-white px-3 py-1 rounded hover:bg-gray-600">編集</a>
   </div>
-  <div class="text-gray-800 whitespace-pre-line">
-    {{ post.body }}
+  <div class="prose">
+    {{ post.body|markdown }}
   </div>
 </div>
 {% endblock %}
