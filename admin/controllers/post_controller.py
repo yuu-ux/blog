@@ -1,4 +1,3 @@
-from datetime import datetime
 from flask import Blueprint, redirect, url_for, render_template, request, g, flash
 from common.db.database import db
 from common.models.post import Post
@@ -32,20 +31,10 @@ def create():
         return redirect(url_for('login_bp.index'))
 
     form = PostForm()
-    form.submit.label.text = '作成'  # type: ignore
+    form.submit_publish.label.text = '作成'  # type: ignore
 
     if form.validate_on_submit():
-        try:
-            post = Post(
-                title=form.title.data,
-                body=form.body.data,
-                published_at=datetime.now(),
-                category_id=form.category.data,
-            )  # type: ignore
-            db.session.add(post)
-            db.session.commit()
-        except SQLAlchemyError:
-            logging.exception('error create post')
+        if Post.save_post(form) is None:
             flash('記事が作成できませんでした', 'error')
             return redirect(url_for('post_bp.create'))
 
@@ -70,25 +59,36 @@ def edit(post_id):
         return redirect('root_bp.index')
 
     form = PostForm()
-    form.submit.label.text = '更新'  # type: ignore
+    form.submit_publish.label.text = '更新'  # type: ignore
     if request.method == 'GET':
         form.title.data = post.title  # type: ignore
         form.body.data = post.body  # type: ignore
 
     if form.validate_on_submit():
-        try:
-            post.title = form.title.data  # type: ignore
-            post.body = form.body.data  # type: ignore
-            post.category_id = form.category.data  # type: ignore
-            db.session.commit()
-        except SQLAlchemyError:
-            logging.exception('error post edit')
+        if Post.save_post(form, post) is None:
             flash('記事の更新に失敗しました', 'error')
             return redirect(url_for('post_bp.index', post_id=post.id))
+
         flash('記事を更新しました', 'info')
         return redirect(url_for('post_bp.index', post_id=post.id))
 
     return render_template('posts/edit.html', member=g.member, post=post, form=form)
+
+
+@post_bp.route('/<int:post_id>/publish', methods=['POST'])
+def publish(post_id):
+    if not g.member:
+        return redirect(url_for('login_bp.index'))
+
+    post = (
+        db.session.query(Post)
+        .filter(Post.id == post_id, Post.is_deleted != True)
+        .first()
+    )
+    if post.publish_post() is None:
+        flash('投稿できませんでした', 'error')
+
+    return redirect(url_for('root_bp.index'))
 
 
 @post_bp.route('/<int:post_id>/delete', methods=['POST'])

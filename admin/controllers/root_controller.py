@@ -1,4 +1,4 @@
-from flask import render_template, Blueprint, g, redirect, url_for, flash
+from flask import render_template, Blueprint, g, redirect, url_for
 from common.db.database import db
 from common.models.post import Post
 from forms.post import PostForm
@@ -12,6 +12,6 @@ def index():
         return redirect(url_for('login_bp.index'))
 
     form = PostForm()
-    form.submit.label.text = '削除'  # type: ignore
+    form.submit_publish.label.text = '投稿'  # type: ignore
     posts = db.session.query(Post).filter(Post.is_deleted != True).all()
     return render_template('index.html', member=g.member, posts=posts, form=form)
