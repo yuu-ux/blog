@@ -10,7 +10,11 @@ school_bp = Blueprint('school_bp', __name__)
 def index():
     posts = (
         db.session.query(Post)
-        .filter(Post.category_id == CATEGORY_SCHOOL, Post.is_deleted != True)
+        .filter(
+            Post.category_id == CATEGORY_SCHOOL,
+            Post.is_deleted != True,
+            Post.is_draft != True,
+        )
         .all()
     )
     return render_template('school/index.html', posts=posts)

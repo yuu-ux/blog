@@ -10,7 +10,11 @@ web_bp = Blueprint('web_bp', __name__)
 def index():
     posts = (
         db.session.query(Post)
-        .filter(Post.category_id == CATEGORY_WEB, Post.is_deleted != True)
+        .filter(
+            Post.category_id == CATEGORY_WEB,
+            Post.is_deleted != True,
+            Post.is_draft != True,
+        )
         .all()
     )
     return render_template('web/index.html', posts=posts)
