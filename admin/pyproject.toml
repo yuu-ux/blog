@@ -18,6 +18,7 @@ dependencies = [
     "bcrypt>=4.3.0",
     "markdown>=3.8",
     "markupsafe>=3.0.2",
+    "bleach>=6.2.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
