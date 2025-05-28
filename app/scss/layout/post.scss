@@ -33,6 +33,7 @@
   a {
     color: #90caf9;
     text-decoration: underline;
+    word-break: break-all;
 
     &:hover {
       color: #64b5f6;
@@ -58,5 +59,25 @@
     }
 }
 
+@media (max-width: 768px) {
+  .post-detail {
+    margin: 1rem;
+    padding: 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
 
+  .post-title {
+    font-size: 1.5rem;
+    padding-bottom: 0.4rem;
+  }
 
+  .post-body {
+    font-size: 1rem;
+  }
+
+  .post-body pre {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
+}
