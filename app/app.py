@@ -10,11 +10,12 @@ from controllers.web_controller import web_bp
 from settings.asset import ScssBundler
 from common.filter import setup_filter
 from common.db.database import init_db
+from common.config import DB_URI
 
 app = Flask(__name__)
 
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password@db:3306/blog'
+app.config['SQLALCHEMY_DATABASE_URI'] = DB_URI
 init_db(app)
 setup_filter(app)
 

@@ -1,7 +1,7 @@
 from flask import render_template, Blueprint, redirect, url_for, flash
 from common.db.database import db
 from common.models.post import Post
-from config import CATEGORY_SCHOOL
+from common.config import CATEGORY_SCHOOL
 
 school_bp = Blueprint('school_bp', __name__)
 

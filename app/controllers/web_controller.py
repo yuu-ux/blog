@@ -1,7 +1,7 @@
 from flask import render_template, Blueprint, url_for, redirect, flash
 from common.db.database import db
 from common.models.post import Post
-from config import CATEGORY_WEB
+from common.config import CATEGORY_WEB
 
 web_bp = Blueprint('web_bp', __name__)
 
