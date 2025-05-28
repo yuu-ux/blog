@@ -11,7 +11,7 @@
 
 -e file:.
 bcrypt==4.3.0
-    # via seedr
+    # via seeder
 blinker==1.9.0
     # via flask
 click==8.2.0
@@ -19,7 +19,7 @@ click==8.2.0
 flask==3.1.1
     # via flask-sqlalchemy
 flask-sqlalchemy==3.1.1
-    # via seedr
+    # via seeder
 greenlet==3.2.2
     # via sqlalchemy
 itsdangerous==2.2.0
@@ -32,7 +32,7 @@ markupsafe==3.0.2
     # via werkzeug
 sqlalchemy==2.0.41
     # via flask-sqlalchemy
-    # via seedr
+    # via seeder
 typing-extensions==4.13.2
     # via sqlalchemy
 werkzeug==3.1.3

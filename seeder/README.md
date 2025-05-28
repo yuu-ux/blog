@@ -1,3 +1,3 @@
-# seedr
+# seeder
 
 Describe your project here.

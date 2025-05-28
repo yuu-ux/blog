@@ -29,7 +29,7 @@ services:
             dockerfile: ./docker/admin/Dockerfile
         volumes:
             - ./admin:/root/admin
-            - ./seedr:/root/admin/seeder
+            - ./seeder:/root/admin/seeder
             - ./common:/root/common
         tty: true
         environment:
