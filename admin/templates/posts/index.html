@@ -2,18 +2,26 @@
 {% from 'includes/macros.html' import show_flash_messages %}
 
 {% block body %}
-<div class="bg-white p-6 rounded shadow">
-  {{ show_flash_messages() }}
-  <div class="flex justify-between items-center mb-4">
-    <div class="flex items-center gap-2">
-      <h2 class="text-2xl font-bold">{{ post.title }}</h2>
-        <span class="text-sm text-white bg-blue-500 px-2 py-1 rounded">{{ post.category.name }}</span>
+<div class="pt-12">
+  <div class="bg-white p-6 rounded shadow w-[800px] mx-auto">
+    {{ show_flash_messages() }}
+
+    <div class="flex justify-between items-center mb-4">
+      <div class="flex items-center gap-2">
+        <h2 class="text-2xl font-bold">{{ post.title }}</h2>
+        <span class="text-sm text-white bg-blue-500 px-2 py-1 rounded">
+          {{ post.category.name }}
+        </span>
+      </div>
+      <a href="{{ url_for('post_bp.edit', post_id=post.id) }}"
+         class="text-sm bg-gray-500 text-white px-3 py-1 rounded hover:bg-gray-600">
+        編集
+      </a>
     </div>
-    <a href="{{ url_for('post_bp.edit', post_id=post.id) }}" class="text-sm bg-gray-500 text-white px-3 py-1 rounded hover:bg-gray-600">編集</a>
-  </div>
-  <div class="prose">
-    {{ post.body|markdown }}
+
+    <div class="prose">
+      {{ post.body|markdown }}
+    </div>
   </div>
 </div>
 {% endblock %}
-
