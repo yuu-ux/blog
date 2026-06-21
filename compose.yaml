@@ -8,6 +8,7 @@ services:
             - 8002:8002
         depends_on:
             - app
+            - admin
         init: true
         environment:
             TZ: Asia/Tokyo
@@ -16,17 +17,31 @@ services:
         build:
             context: .
             dockerfile: ./docker/app/Dockerfile
+        depends_on:
+            db:
+                condition: service_healthy
+            seed:
+                condition: service_completed_successfully
         volumes:
             - ./app:/root/app
             - ./common:/root/common
         tty: true
         environment:
             TZ: Asia/Tokyo
+            DB_USER: blog
+            DB_PASSWORD: password
+            DB_PORT: 3306
+            DB_HOST: db
 
     admin:
         build:
             context: .
             dockerfile: ./docker/admin/Dockerfile
+        depends_on:
+            db:
+                condition: service_healthy
+            seed:
+                condition: service_completed_successfully
         volumes:
             - ./admin:/root/admin
             - ./seeder:/root/admin/seeder
@@ -34,6 +49,11 @@ services:
         tty: true
         environment:
             TZ: Asia/Tokyo
+            DB_USER: blog
+            DB_PASSWORD: password
+            DB_PORT: 3306
+            DB_HOST: db
+            SECRET_KEY: local-dev-secret-key
 
     tailwind:
         build:
@@ -41,13 +61,49 @@ services:
             dockerfile: ./docker/tailwind/Dockerfile
         volumes:
             - ./admin:/root/admin
+            - tailwind_node_modules:/root/admin/node_modules
         tty: true
-        command: npx tailwindcss -i /root/admin/static/style.css -o /root/admin/static/dist.css --watch
+        command: sh -lc "npm install && npx tailwindcss -i /root/admin/static/style.css -o /root/admin/static/dist.css --watch --poll"
+
+    seed:
+        build:
+            context: .
+            dockerfile: ./docker/admin/Dockerfile
+        depends_on:
+            db:
+                condition: service_healthy
+        volumes:
+            - ./admin:/root/admin
+            - ./seeder:/root/admin/seeder
+            - ./common:/root/common
+        environment:
+            TZ: Asia/Tokyo
+            DB_USER: blog
+            DB_PASSWORD: password
+            DB_PORT: 3306
+            DB_HOST: db
+            SECRET_KEY: local-dev-secret-key
+        command: sh -lc "/root/.rye/shims/rye sync --verbose --no-lock && sh /root/admin/seeder/all.sh"
+
     db:
         image: mysql:8.3.0
         ports:
             - 13306:3306
+        volumes:
+            - mysql_data:/var/lib/mysql
         environment:
             MYSQL_ROOT_PASSWORD: password
             MYSQL_DATABASE: blog
+            MYSQL_USER: blog
+            MYSQL_PASSWORD: password
             TZ: Asia/Tokyo
+        healthcheck:
+            test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -ppassword --silent"]
+            interval: 5s
+            timeout: 3s
+            retries: 20
+            start_period: 10s
+
+volumes:
+    mysql_data:
+    tailwind_node_modules:

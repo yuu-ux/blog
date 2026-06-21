@@ -18,6 +18,8 @@ class Member(AuditableColumns, db.Model):
 
     @staticmethod
     def fetch_active_member(member_id):
+        if member_id is None:
+            return None
         return db.session.query(Member).filter_by(id = member_id).first()
 
     @staticmethod

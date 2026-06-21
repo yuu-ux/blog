@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(aws ecs:*)",
+      "Bash(aws rds:*)",
+      "Bash(aws ec2:*)"
+    ]
+  }
+}
