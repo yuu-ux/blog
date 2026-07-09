@@ -17,3 +17,6 @@ secrets.auto.tfvars
 .terraform/
 *.tfstate
 *.tfstate.backup
+
+# cloudflare workers
+.wrangler

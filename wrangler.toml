@@ -1,0 +1,8 @@
+name = "blog"
+main = "src/index.js"
+compatibility_date = "2026-07-09"
+
+[assets]
+directory = "./app/public"
+binding = "ASSETS"
+not_found_handling = "404-page"
